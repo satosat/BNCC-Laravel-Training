@@ -3,7 +3,8 @@
 @section('content')
     <!-- Content -->
     <h1>Add New Book</h1>
-    <form action="" method="">
+    <form action="{{ route('store_book') }}" method="POST">
+        @csrf
 
         <div class="mb-3">
             <label for="title" class="form-label">Book Title</label>
