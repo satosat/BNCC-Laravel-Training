@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Book;
+use App\Models\BookDetail;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class BookController extends Controller
 {
@@ -13,7 +16,10 @@ class BookController extends Controller
      */
     public function index()
     {
-        return view('book.index');
+        return view('book.index', [
+            'title' => "Home Page",
+            'books' => Book::all(),
+        ]);
     }
 
     /**
@@ -23,7 +29,9 @@ class BookController extends Controller
      */
     public function create()
     {
-        return view('book.create');
+        return view('book.create', [
+            'title' => 'Create New Book',
+        ]);
     }
 
     /**
@@ -34,6 +42,27 @@ class BookController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate([
+            'title' => ['required', 'max: 255'],
+            'author' => ['required', 'max: 255'],
+        ]);
+
+        DB::transaction(function () use ($request) {
+            $book = Book::create([
+                'title' => $request->title,
+                'author' => $request->author,
+            ]);
+
+            BookDetail::create([
+                'book_id' => $book->id,
+                'description' => $request->description,
+                'length' => $request->length,
+                'publisher' => $request->publisher,
+                'stock' => $request->stock,
+                'price' => $request->price,
+            ]);
+        });
+
         return redirect(route('home'));
     }
 
@@ -45,7 +74,7 @@ class BookController extends Controller
      */
     public function show($id)
     {
-        //
+        return view('book.show');
     }
 
     /**

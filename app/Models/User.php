@@ -14,6 +14,8 @@ class User extends Authenticatable
 
     /**
      * The attributes that are mass assignable.
+     * --> bisa di-insert oleh user
+     * --> field yang di-whitelist untuk user
      *
      * @var array<int, string>
      */
