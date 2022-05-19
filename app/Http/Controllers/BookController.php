@@ -17,7 +17,7 @@ class BookController extends Controller
     public function index()
     {
         return view('book.index', [
-            'title' => "Home Page",
+            'title' => 'Home Page',
             'books' => Book::all(),
         ]);
     }
@@ -42,11 +42,19 @@ class BookController extends Controller
      */
     public function store(Request $request)
     {
+        // Validation rules dapat dilihat di: https://laravel.com/docs/9.x/validation#available-validation-rules
         $request->validate([
             'title' => ['required', 'max: 255'],
             'author' => ['required', 'max: 255'],
+            'description' => ['required', 'max: 255'],
+            'publisher' => ['required', 'max: 255'],
+            'length' => ['required', 'integer', 'min: 1', 'max: 2147483647'],
+            'stock' => ['required', 'integer', 'min: 0', 'max: 2147483647'],
+            'price' => ['required', 'integer', 'min: 1000', 'max: 2147483647'],
         ]);
 
+        // Menggunakan transaction untuk memastikan atomicity
+        // Atomicity: https://en.wikipedia.org/wiki/Atomicity_(database_systems)
         DB::transaction(function () use ($request) {
             $book = Book::create([
                 'title' => $request->title,
