@@ -50,7 +50,7 @@ class BookController extends Controller
             'publisher' => ['required', 'max: 255'],
             'length' => ['required', 'integer', 'min: 1', 'max: 2147483647'],
             'stock' => ['required', 'integer', 'min: 0', 'max: 2147483647'],
-            'price' => ['required', 'integer', 'min: 1000', 'max: 2147483647'],
+            'price' => ['required', 'integer', 'min: 1', 'max: 2147483647'],
         ]);
 
         // Menggunakan transaction untuk memastikan atomicity
