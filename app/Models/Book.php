@@ -15,4 +15,16 @@ class Book extends Model
         'title',
         'author'
     ];
+
+    // One-to-One relationship with BookDetail
+    public function detail()
+    {
+        return $this->hasOne(BookDetail::class);
+    }
+
+    // One-to-Many relationship with Review
+    public function reviews()
+    {
+        return $this->hasMany(Review::class);
+    }
 }

@@ -23,7 +23,7 @@
                                     <h5 class="fw-bolder">{{ $book->title }}</h5>
                                     <small class="text-muted">{{ $book->author }}</small><br>
                                     <!-- Product price-->
-                                    Rp. xx.xxx,00
+                                    Rp. {{ number_format($book->detail->price, 0, '.', '.') }}
                                 </div>
                             </div>
 

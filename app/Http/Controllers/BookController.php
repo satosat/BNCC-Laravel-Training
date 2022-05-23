@@ -121,6 +121,25 @@ class BookController extends Controller
             'stock' => ['required', 'integer', 'min: 0', 'max: 2147483647'],
             'price' => ['required', 'integer', 'min: 1', 'max: 2147483647'],
         ]);
+
+        DB::transaction(function () use ($request, $id) {
+            Book::where('id', $id)
+                ->update([
+                    'title' => $request->title,
+                    'author' => $request->author
+            ]);
+
+            BookDetail::where('book_id', $id)
+                ->update([
+                    'description' => $request->description,
+                    'length' => $request->length,
+                    'publisher' => $request->publisher,
+                    'stock' => $request->stock,
+                    'price' => $request->price,
+            ]);
+        });
+
+        return redirect(route('home'));
     }
 
     /**

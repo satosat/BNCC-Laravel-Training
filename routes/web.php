@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\BookController;
+use App\Http\Controllers\ReviewController;
 use Illuminate\Support\Facades\Route;
 
 Route::redirect('/', '/books');
@@ -12,5 +13,7 @@ Route::post('/books', [BookController::class, 'store'])->name('store_book');
 Route::get('/books/{id}', [BookController::class, 'show'])->name('show_book');
 Route::put('/books/{id}', [BookController::class, 'update'])->name('update_book');
 Route::delete('/books/{id}', [BookController::class, 'destroy'])->name('delete_book');
+
+Route::post('/reviews', [ReviewController::class, 'store'])->name('store_review');
 
 require __DIR__.'/auth.php';

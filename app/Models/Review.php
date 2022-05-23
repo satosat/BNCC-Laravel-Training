@@ -16,4 +16,16 @@ class Review extends Model
         'book_id',
         'comment',
     ];
+
+    // Inverse of One-to-Many relationship with Book
+    public function book()
+    {
+        return $this->belongsTo(Book::class);
+    }
+
+    // Inverse of One-to-Many relationship with User
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }

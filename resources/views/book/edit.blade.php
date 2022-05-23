@@ -22,27 +22,27 @@
 
         <div class="mb-3">
             <label for="description" class="form-label">Book Description</label>
-            <input type="text" class="@error('description') is-invalid @enderror form-control" name="description" id="description">
+            <input type="text" class="@error('description') is-invalid @enderror form-control" name="description" id="description" value="{{ $book->detail->description }}">
         </div>
 
         <div class="mb-3">
             <label for="length" class="form-label">Book Length</label>
-            <input type="number" class="@error('length') is-invalid @enderror form-control" name="length" id="length">
+            <input type="number" class="@error('length') is-invalid @enderror form-control" name="length" id="length" value="{{ $book->detail->length }}">
         </div>
 
         <div class="mb-3">
             <label for="publisher" class="form-label">Book Publisher</label>
-            <input type="text" class="@error('publisher') is-invalid @enderror form-control" name="publisher" id="publisher">
+            <input type="text" class="@error('publisher') is-invalid @enderror form-control" name="publisher" id="publisher" value="{{ $book->detail->publisher }}">
         </div>
 
         <div class="mb-3">
             <label for="stock" class="form-label">Book Stock</label>
-            <input type="number" class="@error('stock') is-invalid @enderror form-control" name="stock" id="stock">
+            <input type="number" class="@error('stock') is-invalid @enderror form-control" name="stock" id="stock" value="{{ $book->detail->stock }}">
         </div>
 
         <div class="mb-3">
             <label for="price" class="form-label">Book Price</label>
-            <input type="number" class="@error('price') is-invalid @enderror form-control" name="price" id="price">
+            <input type="number" class="@error('price') is-invalid @enderror form-control" name="price" id="price" value="{{ $book->detail->price }}">
         </div>
 
         @if($errors->any())

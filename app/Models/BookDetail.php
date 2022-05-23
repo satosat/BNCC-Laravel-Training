@@ -19,4 +19,10 @@ class BookDetail extends Model
         'stock',
         'price',
     ];
+
+    // Inverse of One-to-ONe relationship with Book
+    public function book()
+    {
+        return $this->belongsTo(Book::class);
+    }
 }

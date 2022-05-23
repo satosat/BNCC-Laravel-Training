@@ -19,29 +19,20 @@
         </thead>
         <tbody>
             <!-- Individual Reviews -->
-                <tr>
-                    <th scope="row">1</th>
-                    <td>Name</td>
-                    <td>Comment</td>
-                    <td>2 May 2022</td>
-                </tr>
-                <tr>
-                    <th scope="row">2</th>
-                    <td>Name</td>
-                    <td>Comment</td>
-                    <td>2 May 2022</td>
-                </tr>
-                <tr>
-                    <th scope="row">3</th>
-                    <td>Name</td>
-                    <td>Comment</td>
-                    <td>2 May 2022</td>
-                </tr>
+                @foreach ($book->reviews as $review)
+                    <tr>
+                        <th scope="row">{{ $loop->index + 1}}</th>
+                        <td>{{ $review->user->name }}</td>
+                        <td>{{ $review->comment }}</td>
+                        <td>{{ date_format($review->created_at, "d F Y") }}</td>
+                    </tr>
+                @endforeach
         </tbody>
     </table>
 
-    <form action="" method="">
-        <input type="hidden" name="book_id" id="book_id" value="Book ID">
+    <form action="{{ route('store_review') }}" method="POST">
+        @csrf
+        <input type="hidden" name="book_id" id="book_id" value="{{ $book->id }}">
 
         <div class="mb-3">
             <label for="review" class="form-label display-6">Drop a review</label>
