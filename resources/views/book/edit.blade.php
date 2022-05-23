@@ -3,16 +3,21 @@
 @section('content')
     <!-- Content -->
     <h1>Edit Book</h1>
-    <form action="" method="">
+    <form action="{{ route('update_book', ['id' => $book->id]) }}" method="POST">
+
+        @csrf
+        @method('PUT')
+
+        <input type="hidden" name="book_id" id="book_id" value="{{ $book->id }}">
 
         <div class="mb-3">
             <label for="title" class="form-label">Book Title</label>
-            <input type="text" class="@error('title') is-invalid @enderror form-control" name="title" id="title">
+            <input type="text" class="@error('title') is-invalid @enderror form-control" name="title" id="title" value="{{ $book->title }}">
         </div>
 
         <div class="mb-3">
             <label for="author" class="form-label">Book Author</label>
-            <input type="text" class="@error('author') is-invalid @enderror form-control" name="author" id="author">
+            <input type="text" class="@error('author') is-invalid @enderror form-control" name="author" id="author" value={{ $book->author }}>
         </div>
 
         <div class="mb-3">

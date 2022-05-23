@@ -82,7 +82,10 @@ class BookController extends Controller
      */
     public function show($id)
     {
-        return view('book.show');
+        return view('book.show', [
+            'title' => 'Show Book',
+            'book' => Book::findOrFail($id),
+        ]);
     }
 
     /**
@@ -93,7 +96,10 @@ class BookController extends Controller
      */
     public function edit($id)
     {
-        return view('book.edit');
+        return view('book.edit', [
+            'title' => 'Edit Book',
+            'book' => Book::findOrFail($id),
+        ]);
     }
 
     /**
@@ -105,7 +111,16 @@ class BookController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $request->validate([
+            'book_id' => ['required'],
+            'title' => ['required', 'max: 255'],
+            'author' => ['required', 'max: 255'],
+            'description' => ['required', 'max: 255'],
+            'publisher' => ['required', 'max: 255'],
+            'length' => ['required', 'integer', 'min: 1', 'max: 2147483647'],
+            'stock' => ['required', 'integer', 'min: 0', 'max: 2147483647'],
+            'price' => ['required', 'integer', 'min: 1', 'max: 2147483647'],
+        ]);
     }
 
     /**
@@ -116,6 +131,8 @@ class BookController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Book::destroy($id);
+
+        return redirect(route('home'));
     }
 }

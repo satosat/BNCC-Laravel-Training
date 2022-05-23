@@ -30,7 +30,7 @@
                             <!-- Product actions-->
                             <div class="card-footer p-2 pt-0 border-top-0 bg-transparent d-flex justify-content-around">
                                 <div class="text-center">
-                                    <a class="btn mt-auto btn-primary" href="">Details</a>
+                                    <a class="btn mt-auto btn-primary" href="{{ route('show_book', ['id' => $book->id]) }}">Details</a>
                                 </div>
                                 <div class="text-center">
                                     <a class="btn mt-auto btn-success" href="">Buy</a>

@@ -3,8 +3,8 @@
 @section('content')
 
     <!-- Content -->
-    <h1 class="display-1">Book Title</h1>
-    <h6 class="display-6">Book Author</h6>
+    <h1 class="display-1">{{ $book->title }}</h1>
+    <h6 class="display-6">{{ $book->author }}</h6>
 
     <h3 class="display-6 pt-5">Reviews</h3>
 
@@ -53,12 +53,15 @@
 
     <div class="d-flex justify-content-start pt-3">
         <!-- Edit Form -->
-        <form action="" method="">
+        <form action="{{ route('edit_book', ['id' => $book->id]) }}" method="GET">
             <input type="submit" value="Edit Book" class="btn btn-primary me-3">
         </form>
 
         <!-- Delete Form -->
-        <form action="" method="">
+        <form action="{{ route('delete_book', ['id' => $book->id]) }}" method="POST">
+            @csrf
+            @method('DELETE')
+
             <input type="submit" value="Delete Book" class="btn btn-danger">
         </form>
     </div>
