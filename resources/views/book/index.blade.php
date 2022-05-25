@@ -14,14 +14,16 @@
                         <div class="card h-100">
 
                             <!-- Product image-->
-                            <img class="card-img-top" src="./Dummy Image.png"/>
+                            <img class="card-img-top" src="{{ url('images/dummy_image.png') }}"/>
 
                             <!-- Product details-->
                             <div class="card-body p-4">
                                 <div class="text-center">
+
                                     <!-- Product name-->
                                     <h5 class="fw-bolder">{{ $book->title }}</h5>
                                     <small class="text-muted">{{ $book->author }}</small><br>
+
                                     <!-- Product price-->
                                     Rp. {{ number_format($book->detail->price, 0, '.', '.') }}
                                 </div>
@@ -39,6 +41,8 @@
                         </div>
                     </div>
                 @endforeach
+
+                {{ $books->links() }}
 
             </div>
         </div>

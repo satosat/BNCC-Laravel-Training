@@ -14,6 +14,6 @@ Route::get('/books/{id}', [BookController::class, 'show'])->name('show_book');
 Route::put('/books/{id}', [BookController::class, 'update'])->name('update_book');
 Route::delete('/books/{id}', [BookController::class, 'destroy'])->name('delete_book');
 
-Route::post('/reviews', [ReviewController::class, 'store'])->name('store_review');
+Route::post('/reviews', [ReviewController::class, 'store'])->name('store_review')->middleware('auth');
 
 require __DIR__.'/auth.php';

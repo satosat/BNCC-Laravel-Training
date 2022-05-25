@@ -42,18 +42,20 @@
         <button type="submit" class="btn btn-primary">Submit</button>
     </form>
 
-    <div class="d-flex justify-content-start pt-3">
-        <!-- Edit Form -->
-        <form action="{{ route('edit_book', ['id' => $book->id]) }}" method="GET">
-            <input type="submit" value="Edit Book" class="btn btn-primary me-3">
-        </form>
+    @if (Auth::user() && Auth::user()->is_admin)
+        <div class="d-flex justify-content-start pt-3">
+            <!-- Edit Form -->
+            <form action="{{ route('edit_book', ['id' => $book->id]) }}" method="GET">
+                <input type="submit" value="Edit Book" class="btn btn-primary me-3">
+            </form>
 
-        <!-- Delete Form -->
-        <form action="{{ route('delete_book', ['id' => $book->id]) }}" method="POST">
-            @csrf
-            @method('DELETE')
+            <!-- Delete Form -->
+            <form action="{{ route('delete_book', ['id' => $book->id]) }}" method="POST">
+                @csrf
+                @method('DELETE')
 
-            <input type="submit" value="Delete Book" class="btn btn-danger">
-        </form>
-    </div>
+                <input type="submit" value="Delete Book" class="btn btn-danger">
+            </form>
+        </div>
+    @endif
 @endsection

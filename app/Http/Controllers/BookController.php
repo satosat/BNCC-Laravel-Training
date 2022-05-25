@@ -9,6 +9,12 @@ use Illuminate\Support\Facades\DB;
 
 class BookController extends Controller
 {
+    // function pertama yang dicall oleh sebuah class ketika class tersebut dijadikan instance
+    public function __construct()
+    {
+        $this->middleware(['auth', 'isAdmin'], ['except' => ['index', 'show']]);
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -18,7 +24,7 @@ class BookController extends Controller
     {
         return view('book.index', [
             'title' => 'Home Page',
-            'books' => Book::all(),
+            'books' => Book::simplePaginate(8),
         ]);
     }
 
