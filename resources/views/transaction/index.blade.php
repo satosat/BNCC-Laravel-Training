@@ -19,7 +19,7 @@
                         <th scope="row">{{ $loop->index + 1 }}</th>
                         <td>{{ $transaction->book->title }}</td>
                         <td>{{ date_format($transaction->created_at, "d M Y H:i:s") }}</td>
-                        <td>Rp. {{ number_format($transaction->book->detail->price, 2, ',', '.') }}</td>
+                        <td>Rp. {{ number_format($transaction->price, 2, ',', '.') }}</td>
                     </tr>
                 @endforeach
             </tbody>

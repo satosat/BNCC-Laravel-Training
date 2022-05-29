@@ -43,7 +43,8 @@ class TransactionController extends Controller
         DB::transaction(function () use ($request) {
             Transaction::create([
                 'user_id' => Auth::id(),
-                'book_id' => $request->book_id
+                'book_id' => $request->book_id,
+                'price' => Book::findOrFail($request->book_id)->detail->price,
             ]);
 
             BookDetail::where('book_id', $request->book_id)

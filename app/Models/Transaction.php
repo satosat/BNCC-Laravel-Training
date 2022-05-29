@@ -11,7 +11,8 @@ class Transaction extends Model
 
     protected $fillable = [
         'user_id',
-        'book_id'
+        'book_id',
+        'price',
     ];
 
     // One-to-Many relationship with User and Book
